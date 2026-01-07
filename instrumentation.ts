@@ -22,18 +22,17 @@ export async function onRequestError(
     routePath?: string;
   }
 ) {
-  Sentry.captureRequestError(err, {
-    request: {
+  Sentry.withScope((scope) => {
+    scope.setContext("request", {
       url: request.path,
       headers: request.headers,
       method: request.method,
-    },
-    contexts: {
-      nextjs: {
-        routerKind: context.routerKind,
-        routePath: context.routePath,
-      },
-    },
+    });
+    scope.setContext("nextjs", {
+      routerKind: context.routerKind,
+      routePath: context.routePath,
+    });
+    Sentry.captureException(err);
   });
 }
 
