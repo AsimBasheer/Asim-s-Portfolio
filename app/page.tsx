@@ -10,6 +10,9 @@ import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
 
+// Disable static generation to prevent SSR issues with clsx/tailwind-merge
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-x-hidden" >
