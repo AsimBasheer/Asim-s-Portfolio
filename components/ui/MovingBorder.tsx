@@ -22,15 +22,15 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  as?: any;
+  as?: React.ElementType;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  [key: string]: any;
-}) {
+} & Omit<React.ComponentPropsWithoutRef<"button">, "children">) {
+  const ComponentWithChildren = Component as React.ElementType<{ children?: React.ReactNode }>;
   return (
-    <Component
+    <ComponentWithChildren
       className={cn(
         "relative md:col-span-2 overflow-hidden bg-transparent p-[1px] text-xl",
         containerClassName,
@@ -38,7 +38,7 @@ export function Button({
       style={{
         borderRadius: borderRadius,
       }}
-      {...otherProps}
+      {...(otherProps as Record<string, unknown>)}
     >
       <div
         className="absolute inset-0"
@@ -65,7 +65,7 @@ export function Button({
       >
         {children}
       </div>
-    </Component>
+    </ComponentWithChildren>
   );
 }
 
@@ -80,9 +80,8 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  [key: string]: any;
-}) => {
-  const pathRef = useRef<any>();
+} & React.SVGProps<SVGSVGElement>) => {
+  const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
