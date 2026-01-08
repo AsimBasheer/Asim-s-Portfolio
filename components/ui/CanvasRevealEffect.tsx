@@ -206,7 +206,7 @@ const ShaderMaterial = ({
     const material = ref.current.material as THREE.ShaderMaterial;
     const timeLocation = material.uniforms.u_time;
     if (timeLocation) {
-      timeLocation.value = timestamp;
+    timeLocation.value = timestamp;
     }
   });
 

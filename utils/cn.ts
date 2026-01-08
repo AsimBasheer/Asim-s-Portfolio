@@ -1,5 +1,6 @@
-// SSR-safe cn function - avoids importing clsx/tailwind-merge at module level
-// which prevents "document is not defined" errors during SSR
+// 100% SSR-safe cn function - ZERO dependencies on clsx or tailwind-merge
+// This completely prevents "document is not defined" errors during SSR/prerendering
+// No imports, no requires, no dynamic imports - pure JavaScript implementation
 
 type ClassValue = string | number | boolean | undefined | null | ClassValue[] | Record<string, boolean>;
 
@@ -17,46 +18,54 @@ function processClasses(input: ClassValue): string[] {
   return [];
 }
 
-// Cache for client-side libraries
-let clsxCache: any = null;
-let twMergeCache: any = null;
-
-function getClientLibraries() {
-  if (typeof window === "undefined") return null;
+// Enhanced Tailwind conflict resolution
+function resolveConflicts(classes: string[]): string[] {
+  // Group classes by their base (e.g., 'p-4' and 'p-6' both have base 'p-')
+  const conflictGroups: Record<string, string> = {};
+  const standalone: string[] = [];
   
-  if (!clsxCache || !twMergeCache) {
-    try {
-      // Use dynamic import only on client side
-      clsxCache = require("clsx");
-      twMergeCache = require("tailwind-merge");
-    } catch {
-      return null;
+  // Common Tailwind prefixes that conflict
+  const prefixes = [
+    'p-', 'px-', 'py-', 'pt-', 'pb-', 'pl-', 'pr-',
+    'm-', 'mx-', 'my-', 'mt-', 'mb-', 'ml-', 'mr-',
+    'w-', 'h-', 'max-w-', 'min-w-', 'max-h-', 'min-h-',
+    'text-', 'bg-', 'border-', 'rounded-',
+    'flex', 'grid', 'block', 'inline', 'hidden', 'visible',
+    'opacity-', 'z-', 'top-', 'bottom-', 'left-', 'right-',
+  ];
+  
+  for (const cls of classes) {
+    if (!cls || typeof cls !== 'string') continue;
+    
+    let matched = false;
+    for (const prefix of prefixes) {
+      if (cls.startsWith(prefix)) {
+        // Keep the last occurrence (rightmost wins, like tailwind-merge)
+        conflictGroups[prefix] = cls;
+        matched = true;
+        break;
+      }
+    }
+    
+    if (!matched) {
+      standalone.push(cls);
     }
   }
   
-  return { clsx: clsxCache, twMerge: twMergeCache };
+  // Combine standalone classes with resolved conflicts
+  const result = [...standalone, ...Object.values(conflictGroups)];
+  
+  // Remove duplicates while preserving order
+  return Array.from(new Set(result));
 }
 
 export function cn(...inputs: ClassValue[]): string {
+  // Pure SSR-safe implementation - no external dependencies
   const classes = processClasses(inputs);
-  const classString = classes.join(" ");
+  const resolved = resolveConflicts(classes);
   
-  // On client side, use tailwind-merge for proper conflict resolution
-  if (typeof window !== "undefined") {
-    const libs = getClientLibraries();
-    if (libs?.clsx && libs?.twMerge) {
-      try {
-        return libs.twMerge(libs.clsx(inputs));
-      } catch {
-        // Fallback to simple merge if libraries fail
-      }
-    }
-  }
-  
-  // SSR fallback: simple deduplication
-  return classString
-    .split(" ")
-    .filter((cls, index, arr) => arr.indexOf(cls) === index)
+  return resolved
     .filter(Boolean)
-    .join(" ");
+    .join(" ")
+    .trim();
 }

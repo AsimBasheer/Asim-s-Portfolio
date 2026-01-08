@@ -10,7 +10,7 @@ import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
 
-// Disable static generation to prevent SSR issues with clsx/tailwind-merge
+// Completely disable static generation and prerendering
 export const dynamic = 'force-dynamic';
 
 export default function Home() {
