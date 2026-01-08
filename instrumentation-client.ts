@@ -1,65 +1,67 @@
-import * as Sentry from "@sentry/nextjs";
+// Client-side only Sentry initialization to prevent SSR errors
+// This file is only executed on the client side
 
-const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+function initializeSentry() {
+  if (typeof window === "undefined") return;
+  
+  // Dynamic import to prevent SSR execution
+  import("@sentry/nextjs").then((Sentry) => {
+    const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 
-if (!dsn) {
-  console.error("❌ Sentry DSN not found. Errors will not be reported to Sentry.");
-  console.error("Please add NEXT_PUBLIC_SENTRY_DSN to your .env.local file");
-} else {
-  console.log("🔵 Initializing Sentry with DSN:", dsn.substring(0, 30) + "...");
-  
-  Sentry.init({
-    dsn,
-    environment: process.env.NODE_ENV || "development",
-    tracesSampleRate: 1.0,
-    debug: true, // Always enable debug to see what's happening
-    replaysOnErrorSampleRate: 1.0,
-    replaysSessionSampleRate: 0.1,
-    integrations: [
-      Sentry.replayIntegration({
-        maskAllText: true,
-        blockAllMedia: true,
-      }),
-      Sentry.feedbackIntegration({
-        colorScheme: 'dark',
-      }),
-    ],
-    // Log to console for debugging
-    beforeSend(event, hint) {
-      console.log("🔵 Sentry Client Event being sent:", {
-        event_id: event.event_id,
-        message: event.message,
-        exception: event.exception,
-        level: event.level,
-      });
-      console.log("🔵 Sentry Client Hint:", hint);
-      // Always return event to ensure it's sent
-      return event;
-    },
-    // Verify Sentry is working
-    beforeBreadcrumb(breadcrumb, hint) {
-      console.log("🍞 Sentry Breadcrumb:", breadcrumb);
-      return breadcrumb;
-    },
-  });
-  
-  // Add global error handler for transport errors
-  if (typeof window !== "undefined") {
+    if (!dsn) {
+      console.error("❌ Sentry DSN not found. Errors will not be reported to Sentry.");
+      return;
+    }
+    
+    console.log("🔵 Initializing Sentry with DSN:", dsn.substring(0, 30) + "...");
+    
+    Sentry.init({
+      dsn,
+      environment: process.env.NODE_ENV || "development",
+      tracesSampleRate: 1.0,
+      debug: true,
+      replaysOnErrorSampleRate: 1.0,
+      replaysSessionSampleRate: 0.1,
+      integrations: [
+        Sentry.replayIntegration({
+          maskAllText: true,
+          blockAllMedia: true,
+        }),
+        Sentry.feedbackIntegration({
+          colorScheme: 'dark',
+        }),
+      ],
+      beforeSend(event, hint) {
+        console.log("🔵 Sentry Client Event being sent:", {
+          event_id: event.event_id,
+          message: event.message,
+          exception: event.exception,
+          level: event.level,
+        });
+        return event;
+      },
+      beforeBreadcrumb(breadcrumb) {
+        return breadcrumb;
+      },
+    });
+    
     window.addEventListener("unhandledrejection", (event) => {
       if (event.reason?.message?.includes("403") || event.reason?.status === 403) {
         console.error("❌ Sentry 403 Error detected!");
-        console.error("This usually means:");
-        console.error("1. DSN key is invalid or expired");
-        console.error("2. Project ID doesn't match");
-        console.error("3. DSN doesn't have proper permissions");
-        console.error("Get a fresh DSN from: https://sentry.io/settings/arfasoftech00/projects/javascript-nextjs/keys/");
       }
     });
-  }
-  
-  console.log("✅ Sentry client initialized successfully");
+    
+    console.log("✅ Sentry client initialized successfully");
+  }).catch(() => {
+    // Silently fail if Sentry can't be loaded
+  });
 }
 
-// Export router transition hook for navigation instrumentation
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+// Only initialize on client side
+if (typeof window !== "undefined") {
+  initializeSentry();
+}
+
+// Export router transition hook - safe for SSR
+export const onRouterTransitionStart = () => {};
 

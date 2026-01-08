@@ -4,9 +4,9 @@
  * 
  * This file no longer initializes Sentry to avoid duplicate initialization.
  * All Sentry configuration is handled in `instrumentation-client.ts`.
+ * 
+ * This file is now empty to prevent SSR execution issues.
  */
 
-// Import the instrumentation-client to ensure it's loaded
-// This file is kept for webpack plugin compatibility but doesn't initialize Sentry
-import "./instrumentation-client";
+// No-op to prevent SSR errors
 
