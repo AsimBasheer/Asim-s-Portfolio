@@ -13,7 +13,7 @@ export const navItems = [
       className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
       imgClassName: "w-full h-full",
       titleClassName: "justify-end",
-      img: "/b1.svg",
+      img: "../public/b1.svg",
       spareImg: "",
     },
     {
@@ -43,8 +43,8 @@ export const navItems = [
       className: "lg:col-span-2 md:col-span-3 md:row-span-1",
       imgClassName: "",
       titleClassName: "justify-start",
-      img: "/grid.svg",
-      spareImg: "/b4.svg",
+      img: "../public/grid.svg",
+      spareImg: "../public/b4.svg",
     },
   
     {
@@ -54,8 +54,8 @@ export const navItems = [
       className: "md:col-span-3 md:row-span-2",
       imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
       titleClassName: "justify-center md:justify-start lg:justify-center",
-      img: "/b5.svg",
-      spareImg: "/grid.svg",
+      img: "../public/b5.svg",
+      spareImg: "../public/grid.svg",
     },
     {
       id: 6,
@@ -74,32 +74,32 @@ export const navItems = [
       id: 1,
       title: "QualityFriend Hotel Tools - Qualityfriend Mobile App",
       des: "This app is designed for users of Qualityfriend—a product of Holidayfriend.solutions—who want to access our web-based social intranet solution for hotels and hospitality businesses on their mobile devices.",
-      img: "/qf.png",
-      iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+      img: "../public/qf.png",
+      iconLists: ["../public/re.svg", "../public/tail.svg", "../public/ts.svg", "../public/three.svg", "../public/fm.svg"],
       link: "https://apps.apple.com/us/app/qualityfriend-hotel-tools/id1632745674",
     },
     {
       id: 2,
       title: "ShiftFish Employees - Your Schedule, Your Choice",
       des: "Shift Fish puts the power &amp; flexibility of scheduling in the hands of team members. Shift Fish eliminates the need for time off requests &amp; availability changes.",
-      img: "/sf.png",
-      iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+      img: "../public/sf.png",
+      iconLists: ["../public/next.svg", "../public/tail.svg", "../public/ts.svg", "../public/stream.svg", "../public/c.svg"],
       link: "https://apps.apple.com/au/app/shiftfish-employees/id6451487646",
     },
     {
       id: 3,
       title: "Fixtrack Service Managment",
       des: "Fixtrack, Fixtrack Service Management, Repairing, Fixtrack Device, Service, Technician. FixTrack is a SAAS platform that allows repair companies to register on our platform and add their customers and technicians to their portal.",
-      img: "/ft.png",
-      iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
+      img: "../public/ft.png",
+      iconLists: ["../public/re.svg", "../public/tail.svg", "../public/ts.svg", "../public/three.svg", "../public/c.svg"],
       link: "https://apps.apple.com/az/app/fixtrack-service-management/id6450923824",
     },
     {
       id: 4,
       title: "ifixAmerica",
       des: "I fix America app will serve as a platform to schedule and manage times for jobs for technicians in the repair and service industry. Technicians can view and accept jobs directly through the app, while managers, well scheduled jobs and assigned jobs to technicians.",
-      img: "/if.png",
-      iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+      img: "../public/if.png",
+      iconLists: ["../public/next.svg", "../public/tail.svg", "../public/ts.svg", "../public/three.svg", "../public/gsap.svg"],
       link: "https://apps.apple.com/az/app/ifixamerica/id6452802738",
     },
   ];
@@ -147,32 +147,32 @@ export const navItems = [
     {
       id: 1,
       name: "cloudinary",
-      img: "/shiftfhish.png",
+      img: "../public/shiftfhish.png",
     },
     {
       id: 2,
       name: "appwrite",
-      img: "/ifix.png",
+      img: "../public/ifix.png",
     },
     {
       id: 3,
       name: "HOSTINGER",
-      img: "/ifixamerica.png",
+      img: "../public/ifixamerica.png",
     },
     {
       id: 4,
       name: "stream",
-      img: "/bigbanyan.png",
+      img: "../public/bigbanyan.png",
     },
     {
       id: 5,
       name: "docker.",
-      img: "/fixtrack.png",
+      img: "../public/fixtrack.png",
     },
     {
       id: 6,
       name: "docker.",
-      img: "/umrah.png",
+      img: "../public/umrah.png",
     },
   ];
   
@@ -182,45 +182,45 @@ export const navItems = [
       title: "Android & React Native Developer Junior",
       desc: "Developed and maintained mobile applications for both Android and iOS platforms using React Native and Android Studio.",
       className: "md:col-span-2",
-      thumbnail: "/exp1.svg",
+      thumbnail: "../public/exp1.svg",
     },
     {
       id: 2,
       title: "Mobile App Dev - TechXpert",
       desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
       className: "md:col-span-2", 
-      thumbnail: "/exp2.svg",
+      thumbnail: "../public/exp2.svg",
     },
     {
       id: 4,
       title: "Lead Mobile App Developer",
       desc: "Developed and maintained mobile applications for both Android and iOS platforms using React Native and Android Studio.",
       className: "md:col-span-2",
-      thumbnail: "/exp4.svg",
+      thumbnail: "../public/exp4.svg",
     },
     {
       id: 3,
       title: "FreelanceSenior Mobile App Developer",
       desc: "Developed and maintained mobile applications for both Android and iOS platforms using React Native and Android Studio.",
       className: "md:col-span-2", 
-      thumbnail: "/exp3.svg",
+      thumbnail: "../public/exp3.svg",
     },
   ];
   
   export const socialMedia = [
     {
       id: 1,
-      img: "/git.svg",
+      img: "../public/git.svg",
       link: "https://github.com/AsimBasheer",
     },
     {
       id: 2,
-      img: "/twit.svg",
+      img: "../public/twit.svg",
       link: "https://twitter.com/asimmehar124",
     },
     {
       id: 3,
-      img: "/link.svg",
+      img: "../public/link.svg",
       link: "https://www.linkedin.com/in/asim-bashir-7a967b18b",
     },
   ];
