@@ -48,10 +48,10 @@ export const BentoGridItem = ({
   id: number;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
-  img?: string | any;
+  img?: string;
   imgClassName?: string;
   titleClassName?: string;
-  spareImg?: string | any;
+  spareImg?: string;
 }) => {
   const leftLists = ["ReactJS", "Express", "Typescript"];
   const rightLists = ["NextJS", "React Native", "NodeJS"];
