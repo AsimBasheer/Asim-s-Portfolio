@@ -1,5 +1,5 @@
 "use client"
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
 // Also install this npm i --save-dev @types/react-lottie
@@ -48,10 +48,10 @@ export const BentoGridItem = ({
   id: number;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
-  img?: string;
+  img?: string | any;
   imgClassName?: string;
   titleClassName?: string;
-  spareImg?: string;
+  spareImg?: string | any;
 }) => {
   const leftLists = ["ReactJS", "Express", "Typescript"];
   const rightLists = ["NextJS", "React Native", "NodeJS"];

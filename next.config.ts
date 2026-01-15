@@ -6,7 +6,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig: NextConfig = {
   output: 'export', // Enables static export
   basePath: isProd ? '/Asim-s-Portfolio' : '',
-  assetPrefix: isProd ? '/Asim-s-Portfolio' : '',
   images: {
     unoptimized: true, // Required for static export
   },
