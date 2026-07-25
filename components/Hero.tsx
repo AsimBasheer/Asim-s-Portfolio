@@ -3,8 +3,8 @@
 import MagicButton from './ui/MagicButton'
 import { Spotlight } from './ui/Spotlight'
 import { TextGenerateEffect } from './ui/TextGenerateEffect'
-import { FaCalendarCheck, FaDownload } from "react-icons/fa6";
-import Image from 'next/image';
+import { FaCalendarCheck } from "react-icons/fa6";
+
 
 const Hero = () => {
   return (
@@ -34,7 +34,7 @@ const Hero = () => {
           {/* Left Column: Text & CTA */}
           <div className='lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-start' >
             <h2 className='uppercase tracking-widest text-xs text-blue-100 max-w-80' >
-              Senior React Native Developer Portfolio
+            Trusted by Startups to Build Production Mobile Apps
             </h2>
             <TextGenerateEffect
               words="Helping Startups Build Scalable Mobile Products"
@@ -42,22 +42,22 @@ const Hero = () => {
             />
             
             <p className="md:tracking-wider mb-8 mt-4 text-sm md:text-lg lg:text-xl text-[#C1C2D3]">
-              I build production-ready apps with React Native, TypeScript, Node.js, and Firebase—specializing in booking platforms, marketplaces, and workforce scheduling.
+            I help founders turn ideas into production-ready mobile products—from MVPs to launch and beyond. Specialising in booking platforms, marketplaces, workforce management, and SaaS applications.
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start">
-              <a href="mailto:asimmehar124@gmail.com?subject=Book%20a%20Call%20-%20Mobile%20Product%20Consultation">
+              <a href="https://calendly.com/asimmehar124/30min">
                 <MagicButton
                   title="Book a Call"
                   icon={<FaCalendarCheck />}
                   position="right"
                 />
               </a>
-              <a href="mailto:asimmehar124@gmail.com?subject=Requesting%20Resume">
+              <a href="https://www.linkedin.com/in/asim-bashir-7a967b18b">
                 <MagicButton
-                  title="Download Resume"
-                  icon={<FaDownload />}
+                  title="View LinkedIn"
+                  icon={""}
                   position="right"
                   otherClasses="!bg-[#161A31] border border-white/[0.1] text-white"
                 />

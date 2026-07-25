@@ -13,11 +13,11 @@ const Footer = () => {
 
       <div className="flex flex-col items-center relative z-10" >
         <h1 className="heading lg:max-w-[50vw] text-center">
-          Let's Build Something <span className="text-purple">Together</span>
+          Let&apos;s Build Something <span className="text-purple">Together</span>
         </h1>
         
         <p className="text-[#BEC1DD] md:mt-10 my-6 text-center max-w-2xl text-base md:text-lg leading-relaxed">
-          If you're building something in booking, on-demand, or marketplace space — send me what you're working on. I'll give you a straight answer on scope, timeline, and what I'd do differently, no sales pitch.
+          If you&apos;re building something in booking, on-demand, or marketplace space — send me what you&apos;re working on. I&apos;ll give you a straight answer on scope, timeline, and what I&apos;d do differently, no sales pitch.
         </p>
 
         <a href="mailto:asimmehar124@gmail.com?subject=Inquiry%20from%20Portfolio&body=Hi%20Asim,%20I'm%20working%20on...">

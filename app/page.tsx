@@ -16,8 +16,8 @@ export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-x-hidden" >
-      <div className="max-w-7xl w-full">
+    <main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto overflow-x-hidden" >
+      <div className="w-full">
         <FloatingNav navItems={navItems} />
         <Hero />
         <CompaniesBar />

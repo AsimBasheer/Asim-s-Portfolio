@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaReact, FaNodeJs, FaLock, FaNetworkWired, FaTools, FaCloudUploadAlt, FaMobileAlt } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaNetworkWired, FaTools, FaCloudUploadAlt, FaMobileAlt } from "react-icons/fa";
 import { SiTypescript, SiFirebase } from "react-icons/si";
 
 const TechStackGrid = () => {
