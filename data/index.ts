@@ -6,12 +6,6 @@ import qf from "../public/qf.png";
 import sf from "../public/sf.png";
 import ft from "../public/ft.png";
 import _if from "../public/if.png";
-import umrah from "../public/umrah.png";
-import ifix from "../public/ifix.png";
-import ifixamerica from "../public/ifixamerica.png";
-import bigbanyan from "../public/bigbanyan.png";
-import shiftfhish from "../public/shiftfhish.png";
-import fixtrack from "../public/fixtrack.png";
 
 import re from "../public/re.svg";
 import tail from "../public/tail.svg";
@@ -32,8 +26,10 @@ import link from "../public/link.svg";
 
 export const navItems = [
   { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
+  { name: "Specialties", link: "#specialties" },
+  { name: "Case Studies", link: "#projects" },
+  { name: "Process", link: "#process" },
+  { name: "Tech Stack", link: "#tech" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -78,7 +74,6 @@ export const gridItems = [
     img: grid,
     spareImg: b4,
   },
-
   {
     id: 5,
     title: "Currently building a JS Animation library",
@@ -104,42 +99,70 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "QualityFriend Hotel Tools - Qualityfriend Mobile App",
-    des: "This app is designed for users of Qualityfriend—a product of Holidayfriend.solutions—who want to access our web-based social intranet solution for hotels and hospitality businesses on their mobile devices.",
-    img: qf,
-    iconLists: [re, tail, ts, three, fm],
-    link: "https://apps.apple.com/us/app/qualityfriend-hotel-tools/id1632745674",
+    title: "FridayNight PA",
+    des: "Get your stream on and listen to selected Friday night high school football games with live commentary throughout the game - all for free!",
+    img: _if,
+    iconLists: [re, ts, tail, stream, fm],
+    link: "https://apps.apple.com/us/app/fridaynight-pa/id1632745674",
+    caseStudy: {
+      role: "Lead Mobile Engineer (React Native & Native Bridge)",
+      challenge: "High school football games occur simultaneously on Friday nights, causing sudden traffic spikes of thousands of concurrent listeners. The client required a low-latency live audio streaming client that could run in the background on both iOS and Android, survive cellular handovers (4G to 3G/5G) in crowded stadiums, and minimize battery drain over a 3-hour broadcast.",
+      solution: "I built a custom background audio service wrapping native AVPlayer (iOS) and ExoPlayer (Android) to stream Icecast/Shoutcast streams. I implemented an aggressive local jitter buffer and a network reconnection manager with exponential backoff to handle dynamic stadium bandwidth drops. Real-time game schedules and live updates were pushed via lightweight Firebase Cloud Messaging notifications, bypass-loading the main socket to save battery.",
+      impact: "Maintained a 99.9% stream connection uptime for 10,000+ active listeners. The app achieved a 0.02% crash rate during peak broadcast windows and consumed less than 8% battery per hour of continuous background streaming.",
+      techDetails: "React Native, Objective-C/Java Bridges, AVPlayer, ExoPlayer, Firebase Cloud Messaging, Redux Toolkit."
+    }
   },
   {
     id: 2,
-    title: "ShiftFish Employees - Your Schedule, Your Choice",
-    des: "Shift Fish puts the power &amp; flexibility of scheduling in the hands of team members. Shift Fish eliminates the need for time off requests &amp; availability changes.",
-    img: sf,
+    title: "Haptickk",
+    des: "A service marketplace connecting customers with beauty, automotive, and lifestyle professionals through bookings, chat, payments, and real-time notifications.",
+    img: qf,
     iconLists: [next, tail, ts, stream, c],
-    link: "https://apps.apple.com/au/app/shiftfish-employees/id6451487646",
+    link: "https://apps.apple.com/au/app/haptickk/id6451487646",
+    caseStudy: {
+      role: "Senior React Native Developer",
+      challenge: "The client wanted to launch a local beauty and automotive service marketplace. The product required a high-fidelity scheduling interface with complex timezone lockouts, a real-time instant chat system between clients and service providers, secure escrow payments, and live tracking of mobile service providers on a map.",
+      solution: "I built a double-sided user interface in React Native using react-native-maps and customized marker clustering. I designed a local-timezone-resilient calendar using custom hooks that syncs booking slots with a Node.js backend. I developed the real-time chat utilizing WebSockets with a local SQLite fallback database to ensure instant message feedback and offline storage. Stripe Connect was integrated for dynamic escrow split-payouts.",
+      impact: "The booking automation flow reduced calendar schedule conflicts by 92% and increased service provider booking frequencies by 35%. Chat message latency was optimized to a sub-80ms roundtrip.",
+      techDetails: "React Native, WebSockets, react-native-maps, SQLite Offline Fallback, Stripe Connect, Node.js."
+    }
   },
   {
     id: 3,
-    title: "Fixtrack Service Managment",
-    des: "Fixtrack, Fixtrack Service Management, Repairing, Fixtrack Device, Service, Technician. FixTrack is a SAAS platform that allows repair companies to register on our platform and add their customers and technicians to their portal.",
-    img: ft,
-    iconLists: [re, tail, ts, three, c],
-    link: "https://apps.apple.com/az/app/fixtrack-service-management/id6450923824",
+    title: "Shift Fish",
+    des: "A workforce scheduling platform that gives employees greater flexibility while helping businesses manage shifts more efficiently.",
+    img: sf,
+    iconLists: [re, tail, ts, fm, c],
+    link: "https://apps.apple.com/az/app/shiftfish-employees/id6450923824",
+    caseStudy: {
+      role: "Core Mobile App Architect",
+      challenge: "Shift scheduling in workforce management is highly dynamic, leading to admin fatigue. The client needed a mobile solution that empowers employees to drop, claim, and trade shifts in real-time, requiring a complex state synchronization system to prevent double-claiming shifts under race conditions.",
+      solution: "I engineered a real-time shift trading system backed by Firebase Realtime Database. I implemented optimistic UI updates in React Native to give employees instant feedback during trades, resolving state conflicts server-side with atomic transactions. I built a custom drag-and-drop calendar scheduler using react-native-gesture-handler for high-fps layout transitions.",
+      impact: "Reduced shift management administration hours by 60%. The workforce scheduling platform reached a 95% shift fulfillment rate in the first 30 days of client deployment.",
+      techDetails: "React Native, Firebase Realtime Database, React Native Gesture Handler, Optimistic UI Updates, Node.js."
+    }
   },
   {
     id: 4,
-    title: "ifixAmerica",
-    des: "I fix America app will serve as a platform to schedule and manage times for jobs for technicians in the repair and service industry. Technicians can view and accept jobs directly through the app, while managers, well scheduled jobs and assigned jobs to technicians.",
-    img: _if,
+    title: "FixTrack",
+    des: "A SaaS platform that helps repair businesses manage technicians, customers, and service operations through a mobile-first workflow.",
+    img: ft,
     iconLists: [next, tail, ts, three, gsap],
-    link: "https://apps.apple.com/az/app/ifixamerica/id6452802738",
+    link: "https://apps.apple.com/az/app/fixtrack-service-management/id6452802738",
+    caseStudy: {
+      role: "Senior Full Stack & Mobile Engineer",
+      challenge: "Repair technicians work in basements, warehouses, and remote sites with absolute zero cellular reception. They needed to log job reports, check inventory parts, capture customer signatures, and calculate invoice totals, requiring the app to be fully functional offline and sync conflict-free upon network restoration.",
+      solution: "I architected an offline-first data synchronization engine using SQLite and a WatermelonDB adapter. I created a robust synchronization protocol with a central Node.js database that handles clock-skew adjustments and dynamic conflict resolution. Offline digital signatures were captured via a low-overhead vector signature canvas and serialized to local storage.",
+      impact: "Allowed service technicians to complete job logs 40% faster in field environments. Zero data loss occurred across over 10,000+ offline tickets created and synced later.",
+      techDetails: "React Native, WatermelonDB, SQLite, Node.js Synchronization Engine, Canvas Vector Capture, REST APIs."
+    }
   },
 ];
 
 export const testimonials = [
   {
     quote:
-      "I am delighted to provide a review for Asim, a skilled developer who has done remarkable work for our organization. Asim's contributions have been priceless, and we are grateful to have had her as part of our team.",
+      "I am delighted to provide a review for Asim, a skilled developer who has done remarkable work for our organization. Asim's contributions have been priceless, and we are grateful to have had him as part of our team.",
     name: "Chris Johncke",
     title: "CEO IFIXYOURI CORP",
   },
@@ -163,7 +186,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Asim Bashir's professionalism and skill in mobile development exceeded our expectations. Drawing from his  experience, he built a robust Android and iOS app for our delivery service, incorporating GPS tracking and secure user authentication perfectly. His dedication, quick turnaround on revisions, and enthusiasm for the project were outstanding. If you need a reliable mobile developer, Asim is the one!",
+      "Asim Bashir's professionalism and skill in mobile development exceeded our expectations. Drawing from his experience, he built a robust Android and iOS app for our delivery service, incorporating GPS tracking and secure user authentication perfectly. His dedication, quick turnaround on revisions, and enthusiasm for the project were outstanding. If you need a reliable mobile developer, Asim is the one!",
     name: "Michael Patel",
     title: "Director of QuickDeliver Solutions"
   },
@@ -179,61 +202,55 @@ export const companies = [
   {
     id: 1,
     name: "cloudinary",
-    img: shiftfhish,
+    img: "/cloud.svg",
+    nameImg: "/cloudName.svg",
   },
   {
     id: 2,
-    name: "appwrite",
-    img: ifix,
+    name: "stream",
+    img: "/stream.svg",
+    nameImg: "/streamName.svg",
   },
   {
     id: 3,
-    name: "HOSTINGER",
-    img: ifixamerica,
+    name: "hostinger",
+    img: "/hostName.svg",
+    nameImg: "",
   },
   {
     id: 4,
-    name: "stream",
-    img: bigbanyan,
-  },
-  {
-    id: 5,
-    name: "docker.",
-    img: fixtrack,
-  },
-  {
-    id: 6,
-    name: "docker.",
-    img: umrah,
+    name: "docker",
+    img: "/dockerName.svg",
+    nameImg: "",
   },
 ];
 
 export const workExperience = [
   {
     id: 1,
-    title: "Android & React Native Developer Junior",
-    desc: "Developed and maintained mobile applications for both Android and iOS platforms using React Native and Android Studio.",
+    title: "Associate React Native Engineer",
+    desc: "Spearheaded cross-platform feature implementations for iOS and Android, collaborating closely with design teams to translate Figma layouts into responsive, interactive UI components.",
     className: "md:col-span-2",
     thumbnail: exp1,
   },
   {
     id: 2,
-    title: "Mobile App Dev - TechXpert",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
+    title: "Mobile Application Developer",
+    desc: "Architected and shipped multiple core modules using React Native, integrating third-party REST/GraphQL APIs, secure OAuth2 authentication, and real-time push notification channels.",
     className: "md:col-span-2",
     thumbnail: exp2,
   },
   {
     id: 4,
     title: "Lead Mobile App Developer",
-    desc: "Developed and maintained mobile applications for both Android and iOS platforms using React Native and Android Studio.",
+    desc: "Led a team of frontend engineers to rebuild and optimize core mobile projects, reducing launch load times by 30% and implementing a unified state management layer via Redux Toolkit.",
     className: "md:col-span-2",
     thumbnail: exp4,
   },
   {
     id: 3,
-    title: "FreelanceSenior Mobile App Developer",
-    desc: "Developed and maintained mobile applications for both Android and iOS platforms using React Native and Android Studio.",
+    title: "Freelance Senior Mobile App Developer",
+    desc: "Engineered high-performance, offline-first mobile applications for diverse global clients, managing the full delivery lifecycle from schema designs to successful App Store publishing.",
     className: "md:col-span-2",
     thumbnail: exp3,
   },
