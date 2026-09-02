@@ -1,15 +1,20 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === 'production';
+// Only apply a basePath when explicitly building for GitHub Pages.
+// Set GITHUB_PAGES=true only in that specific build/deploy script.
+// Do NOT key this off NODE_ENV — `next build` always sets
+// NODE_ENV=production, so that made this basePath apply to every
+// production target (Vercel, Firebase, GitHub Pages alike), which is
+// what broke asset loading on Firebase.
+const isGithubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
-  output: 'export', // Enables static export
-  basePath: isProd ? '/Asim-s-Portfolio' : '',
+  output: "export", // Enables static export
+  basePath: isGithubPages ? "/Asim-s-Portfolio" : "",
   images: {
     unoptimized: true, // Required for static export
   },
-  // instrumentationHook is now available by default, no need to configure it
 };
 
 export default withSentryConfig(nextConfig, {
